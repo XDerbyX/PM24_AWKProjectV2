@@ -33,21 +33,10 @@ fun Profile(
             .wrapContentSize()
             .padding(24.dp)
     ) {
-        Image(
-            painterResource(R.drawable.empty_state_search),
-            contentDescription = null
-        )
         Spacer(Modifier.height(24.dp))
         Text(
             text = stringResource(R.string.work_in_progress),
             style = MaterialTheme.typography.titleMedium,
-            textAlign = TextAlign.Center,
-            modifier = Modifier.fillMaxWidth()
-        )
-        Spacer(Modifier.height(16.dp))
-        Text(
-            text = stringResource(R.string.grab_beverage),
-            style = MaterialTheme.typography.bodyMedium,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
         )

@@ -36,20 +36,20 @@ object SnackRepo {
 
 private val tastyTreats = SnackCollection(
     id = 1L,
-    name = "Android's picks",
+    name = "Dzidan's picks",
     type = CollectionType.Highlight,
     snacks = snacks.subList(0, 13)
 )
 
 private val popular = SnackCollection(
     id = Random.nextLong(),
-    name = "Popular on Jetsnack",
+    name = "Popular on UNHAS",
     snacks = snacks.subList(14, 19)
 )
 
 private val wfhFavs = tastyTreats.copy(
     id = Random.nextLong(),
-    name = "WFH favourites"
+    name = "AWK favourites"
 )
 
 private val newlyAdded = popular.copy(
@@ -59,7 +59,7 @@ private val newlyAdded = popular.copy(
 
 private val exclusive = tastyTreats.copy(
     id = Random.nextLong(),
-    name = "Only on Jetsnack"
+    name = "Only on AWK"
 )
 
 private val also = tastyTreats.copy(

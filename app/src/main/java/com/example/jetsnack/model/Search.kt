@@ -49,49 +49,49 @@ private val searchCategoryCollections = listOf(
         name = "Categories",
         categories = listOf(
             SearchCategory(
-                name = "Chips & crackers",
+                name = "AI-Powered",
                 imageRes = R.drawable.chips
             ),
             SearchCategory(
-                name = "Fruit snacks",
+                name = "Autonomous",
                 imageRes = R.drawable.fruit,
             ),
             SearchCategory(
-                name = "Desserts",
+                name = "Collaborative",
                 imageRes = R.drawable.desserts
             ),
             SearchCategory(
-                name = "Nuts",
+                name = "Humanoid",
                 imageRes = R.drawable.nuts,
             )
         )
     ),
     SearchCategoryCollection(
         id = 1L,
-        name = "Lifestyles",
+        name = "Parts",
         categories = listOf(
             SearchCategory(
-                name = "Organic",
+                name = "AI Components",
                 imageRes = R.drawable.organic
             ),
             SearchCategory(
-                name = "Gluten Free",
+                name = "Hardware",
                 imageRes = R.drawable.gluten_free
             ),
             SearchCategory(
-                name = "Paleo",
+                name = "Software",
                 imageRes = R.drawable.paleo,
             ),
             SearchCategory(
-                name = "Vegan",
+                name = "Accessories",
                 imageRes = R.drawable.vegan,
             ),
             SearchCategory(
-                name = "Vegetarian",
+                name = "Industrial",
                 imageRes = R.drawable.organic,
             ),
             SearchCategory(
-                name = "Whole30",
+                name = "Premium",
                 imageRes = R.drawable.paleo
             )
         )
