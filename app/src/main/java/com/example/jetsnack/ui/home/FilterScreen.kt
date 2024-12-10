@@ -169,7 +169,7 @@ fun FilterScreen(
                     filters = categoryFilters
                 )
 
-                MaxCalories(
+                MaxBatteryUsage(
                     sliderPosition = maxCalories,
                     onValueChanged = { newValue ->
                         maxCalories = newValue
@@ -234,11 +234,11 @@ fun SortFilters(
 }
 
 @Composable
-fun MaxCalories(sliderPosition: Float, onValueChanged: (Float) -> Unit) {
+fun MaxBatteryUsage(sliderPosition: Float, onValueChanged: (Float) -> Unit) {
     FlowRow {
-        FilterTitle(text = stringResource(id = R.string.max_calories))
+        FilterTitle(text = stringResource(id = R.string.max_battery_usage))
         Text(
-            text = stringResource(id = R.string.per_serving),
+            text = stringResource(id = R.string.per_hour),
             style = MaterialTheme.typography.bodyMedium,
             color = JetsnackTheme.colors.brand,
             modifier = Modifier.padding(top = 5.dp, start = 10.dp)

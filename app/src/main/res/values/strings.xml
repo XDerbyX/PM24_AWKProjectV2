@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Jetsnack</string>
+    <string name="app_name">AWKProject</string>
     <string name="label_back">Back</string>
 
     <!-- Home Tabs -->
@@ -56,9 +56,9 @@
     <string name="sort">Sort</string>
     <string name="price">Price</string>
     <string name="category">Category</string>
-    <string name="max_calories">Max Calories</string>
+    <string name="max_battery_usage">Max Battery Usage</string>
     <string name="lifestyle">LifeStyle</string>
-    <string name="per_serving">per serving</string>
+    <string name="per_hour">per hour</string>
     <string name="android_favorites">Android\'s Favorite (default)</string>
     <string name="rating">Rating</string>
     <string name="alphabetical">Alphabetical</string>

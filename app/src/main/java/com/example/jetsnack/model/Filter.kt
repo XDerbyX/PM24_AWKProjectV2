@@ -18,17 +18,17 @@ class Filter(
 }
 
 val filters = listOf(
-    Filter(name = "Organic"),
-    Filter(name = "Gluten-free"),
-    Filter(name = "Dairy-free"),
-    Filter(name = "Sweet"),
-    Filter(name = "Savory")
+    Filter(name = "AI-Powered"),
+    Filter(name = "Autonomous"),
+    Filter(name = "Collaborative"),
+    Filter(name = "Humanoid"),
+    Filter(name = "Industrial")
 )
 val priceFilters = listOf(
-    Filter(name = "$"),
-    Filter(name = "$$"),
-    Filter(name = "$$$"),
-    Filter(name = "$$$$")
+    Filter(name = "Low Budget"),
+    Filter(name = "Mid-range"),
+    Filter(name = "High-end"),
+    Filter(name = "Premium")
 )
 val sortFilters = listOf(
     Filter(name = "Android's favorite (default)", icon = Icons.Filled.Android),
@@ -37,17 +37,17 @@ val sortFilters = listOf(
 )
 
 val categoryFilters = listOf(
-    Filter(name = "Chips & crackers"),
-    Filter(name = "Fruit snacks"),
-    Filter(name = "Desserts"),
-    Filter(name = "Nuts")
+    Filter(name = "AI Components"),
+    Filter(name = "Hardware"),
+    Filter(name = "Software"),
+    Filter(name = "Accessories")
 )
 val lifeStyleFilters = listOf(
-    Filter(name = "Organic"),
-    Filter(name = "Gluten-free"),
-    Filter(name = "Dairy-free"),
-    Filter(name = "Sweet"),
-    Filter(name = "Savory")
+    Filter(name = "AI-Powered"),
+    Filter(name = "Autonomous"),
+    Filter(name = "Collaborative"),
+    Filter(name = "Humanoid"),
+    Filter(name = "Industrial")
 )
 
 var sortDefault = sortFilters.get(0).name
