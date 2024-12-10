@@ -81,6 +81,7 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
+    implementation("androidx.core:core-splashscreen:1.0.1")
     implementation(libs.kotlin.stdlib)
     implementation(libs.kotlinx.coroutines.android)
 
