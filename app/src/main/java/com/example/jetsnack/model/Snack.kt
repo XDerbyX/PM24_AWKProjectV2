@@ -39,7 +39,7 @@ val snacks = listOf(
         id = Random.nextLong(),
         name = "Robot Dog",
         tagline = "Weaponized Dog",
-        imageRes = R.drawable.flamerobot_dog,
+        imageRes = R.drawable.flamerobotdog,
         price = 299
     ),
     Snack(
