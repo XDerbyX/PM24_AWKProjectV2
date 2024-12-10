@@ -23,9 +23,9 @@ data class Snack(
 val snacks = listOf(
     Snack(
         id = 1L,
-        name = "Cupcake",
-        tagline = "A tag line",
-        imageRes = R.drawable.cupcake,
+        name = "Tesla Bot",
+        tagline = "Optimus",
+        imageRes = R.drawable.optimus,
         price = 299
     ),
     Snack(
