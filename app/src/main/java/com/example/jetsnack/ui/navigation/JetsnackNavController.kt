@@ -14,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
  * Destinations used in the [JetsnackApp].
  */
 object MainDestinations {
+    const val LOGIN_ROUTE = "login"
     const val HOME_ROUTE = "home"
     const val SNACK_DETAIL_ROUTE = "snack"
     const val SNACK_ID_KEY = "snackId"
@@ -64,6 +65,11 @@ class JetsnackNavController(
         // In order to discard duplicated navigation events, we check the Lifecycle
         if (from.lifecycleIsResumed()) {
             navController.navigate("${MainDestinations.SNACK_DETAIL_ROUTE}/$snackId?origin=$origin")
+        }
+    }
+    fun navigateToHome() {
+        navController.navigate(MainDestinations.HOME_ROUTE) {
+            popUpTo(MainDestinations.LOGIN_ROUTE) { inclusive = true }
         }
     }
 }

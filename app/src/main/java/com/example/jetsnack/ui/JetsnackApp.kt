@@ -25,8 +25,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
+import com.example.jetsnack.ui.auth.Login
 import com.example.jetsnack.ui.components.JetsnackScaffold
 import com.example.jetsnack.ui.components.JetsnackSnackbar
 import com.example.jetsnack.ui.components.rememberJetsnackScaffoldState
@@ -52,8 +54,15 @@ fun JetsnackApp() {
             ) {
                 NavHost(
                     navController = jetsnackNavController.navController,
-                    startDestination = MainDestinations.HOME_ROUTE
+                    startDestination = MainDestinations.LOGIN_ROUTE
                 ) {
+                    // Login route
+                    composable(MainDestinations.LOGIN_ROUTE) {
+                        Login(onLoginSuccess = {
+                            jetsnackNavController.navigateToHome() // Navigate to Home after login
+                        })
+                    }
+
                     composableWithCompositionLocal(
                         route = MainDestinations.HOME_ROUTE
                     ) { backStackEntry ->
@@ -64,14 +73,13 @@ fun JetsnackApp() {
 
                     composableWithCompositionLocal(
                         "${MainDestinations.SNACK_DETAIL_ROUTE}/" +
-                            "{${MainDestinations.SNACK_ID_KEY}}" +
-                            "?origin={${MainDestinations.ORIGIN}}",
+                                "{${MainDestinations.SNACK_ID_KEY}}" +
+                                "?origin={${MainDestinations.ORIGIN}}",
                         arguments = listOf(
                             navArgument(MainDestinations.SNACK_ID_KEY) {
                                 type = NavType.LongType
                             }
                         ),
-
                     ) { backStackEntry ->
                         val arguments = requireNotNull(backStackEntry.arguments)
                         val snackId = arguments.getLong(MainDestinations.SNACK_ID_KEY)
