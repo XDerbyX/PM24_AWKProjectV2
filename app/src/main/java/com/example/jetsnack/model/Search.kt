@@ -50,19 +50,19 @@ private val searchCategoryCollections = listOf(
         categories = listOf(
             SearchCategory(
                 name = "AI-Powered",
-                imageRes = R.drawable.chips
+                imageRes = R.drawable.moxie,
             ),
             SearchCategory(
                 name = "Autonomous",
-                imageRes = R.drawable.fruit,
+                imageRes = R.drawable.arduinouno,
             ),
             SearchCategory(
                 name = "Collaborative",
-                imageRes = R.drawable.desserts
+                imageRes = R.drawable.robotic_arm,
             ),
             SearchCategory(
                 name = "Humanoid",
-                imageRes = R.drawable.nuts,
+                imageRes = R.drawable.optimus,
             )
         )
     ),
@@ -72,27 +72,27 @@ private val searchCategoryCollections = listOf(
         categories = listOf(
             SearchCategory(
                 name = "AI Components",
-                imageRes = R.drawable.organic
+                imageRes = R.drawable.raspberry_pi4,
             ),
             SearchCategory(
                 name = "Hardware",
-                imageRes = R.drawable.gluten_free
+                imageRes = R.drawable.esp32,
             ),
             SearchCategory(
                 name = "Software",
-                imageRes = R.drawable.paleo,
+                imageRes = R.drawable.wearable_exoskeleton_leg,
             ),
             SearchCategory(
                 name = "Accessories",
-                imageRes = R.drawable.vegan,
+                imageRes = R.drawable.robot_wheels,
             ),
             SearchCategory(
                 name = "Industrial",
-                imageRes = R.drawable.organic,
+                imageRes = R.drawable.pipico,
             ),
             SearchCategory(
                 name = "Premium",
-                imageRes = R.drawable.paleo
+                imageRes = R.drawable.arduinouno,
             )
         )
     )

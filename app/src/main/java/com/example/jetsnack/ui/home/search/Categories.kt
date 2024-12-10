@@ -146,7 +146,7 @@ private fun SearchCategoryPreview() {
         SearchCategory(
             category = SearchCategory(
                 name = "Desserts",
-                imageRes = R.drawable.desserts
+                imageRes = R.drawable.raspberry_pi4
             ),
             gradient = JetsnackTheme.colors.gradient3_2
         )

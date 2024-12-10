@@ -31,14 +31,14 @@ val snacks = listOf(
     Snack(
         id = Random.nextLong(),
         name = "Moxie",
-        tagline = "Robot Company",
+        tagline = "Robot Companion",
         imageRes = R.drawable.moxie,
         price = 299
     ),
     Snack(
         id = Random.nextLong(),
         name = "Robot Dog",
-        tagline = "Weaponize Dog",
+        tagline = "Weaponized Dog",
         imageRes = R.drawable.flamerobot_dog,
         price = 299
     ),
@@ -52,163 +52,169 @@ val snacks = listOf(
     Snack(
         id = Random.nextLong(),
         name = "Exoskeleton Leg",
-        tagline = "A Wearable Exoskeleton Leg",
+        tagline = "Wearable Exoskeleton Leg",
         imageRes = R.drawable.wearable_exoskeleton_leg,
         price = 499
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Honeycomb",
-        tagline = "A tag line",
-        imageRes = R.drawable.honeycomb,
+        name = "Servo Motor",
+        tagline = "Precision Motor for Robotics",
+        imageRes = R.drawable.servo_motor,
+        price = 249
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "LiDAR Sensor",
+        tagline = "High-Precision Distance Measurement",
+        imageRes = R.drawable.lidar_sensor,
+        price = 799
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Raspberry Pi 4",
+        tagline = "Mini Computer for Automation",
+        imageRes = R.drawable.raspberry_pi4,
+        price = 499
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Microcontroller Kit",
+        tagline = "Development Kit for Robotics",
+        imageRes = R.drawable.microcontroller_kit,
+        price = 399
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Stepper Motor",
+        tagline = "Step Precision Motor",
+        imageRes = R.drawable.stepper_motor,
+        price = 199
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Ultrasonic Sensor",
+        tagline = "Proximity Sensor",
+        imageRes = R.drawable.ultrasonic_sensor,
+        price = 149
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "PCB Board",
+        tagline = "Printed Circuit Board",
+        imageRes = R.drawable.pcb_board,
+        price = 99
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Voltage Regulator",
+        tagline = "Stabilize Power Supply",
+        imageRes = R.drawable.voltage_regulator,
+        price = 79
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Battery Pack",
+        tagline = "Rechargeable Power Source",
+        imageRes = R.drawable.battery_pack,
+        price = 199
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "ESP32",
+        tagline = "IoT Module",
+        imageRes = R.drawable.esp32,
         price = 299
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Ice Cream Sandwich",
-        tagline = "A tag line",
-        imageRes = R.drawable.ice_cream_sandwich,
-        price = 1299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Jellybean",
-        tagline = "A tag line",
-        imageRes = R.drawable.jelly_bean,
+        name = "Arduino Uno",
+        tagline = "Open-Source Microcontroller",
+        imageRes = R.drawable.arduinouno,
         price = 299
     ),
     Snack(
         id = Random.nextLong(),
-        name = "KitKat",
-        tagline = "A tag line",
-        imageRes = R.drawable.kitkat,
-        price = 549
+        name = "Servo Controller",
+        tagline = "Motor Control Unit",
+        imageRes = R.drawable.servo_controller,
+        price = 149
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Lollipop",
-        tagline = "A tag line",
-        imageRes = R.drawable.lollipop,
+        name = "IMU Sensor",
+        tagline = "Inertial Measurement Unit",
+        imageRes = R.drawable.imu_sensor,
+        price = 199
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Gyroscope",
+        tagline = "Angular Motion Sensor",
+        imageRes = R.drawable.gyroscope,
+        price = 249
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Robotic Arm",
+        tagline = "Programmable Arm",
+        imageRes = R.drawable.robotic_arm,
+        price = 999
+    ),
+    Snack(
+        id = Random.nextLong(),
+        name = "Camera Module",
+        tagline = "High-Resolution Camera",
+        imageRes = R.drawable.camera_module,
         price = 299
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Marshmallow",
-        tagline = "A tag line",
-        imageRes = R.drawable.marshmallow,
-        price = 299
+        name = "LED Matrix",
+        tagline = "Programmable LED Display",
+        imageRes = R.drawable.led_matrix,
+        price = 199
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Nougat",
-        tagline = "A tag line",
-        imageRes = R.drawable.nougat,
-        price = 299
+        name = "Heat Sink",
+        tagline = "Cooling Component",
+        imageRes = R.drawable.heat_sink,
+        price = 99
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Oreo",
-        tagline = "A tag line",
-        imageRes = R.drawable.oreo,
-        price = 299
+        name = "DC Motor",
+        tagline = "Direct Current Motor",
+        imageRes = R.drawable.dc_motor,
+        price = 149
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Pie",
-        tagline = "A tag line",
-        imageRes = R.drawable.pie,
-        price = 299
+        name = "Control Board",
+        tagline = "Central Control System",
+        imageRes = R.drawable.control_board,
+        price = 599
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Chips",
-        imageRes = R.drawable.chips,
-        price = 299
+        name = "Torque Sensor",
+        tagline = "Measure Force and Rotation",
+        imageRes = R.drawable.torque_sensor,
+        price = 349
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Pretzels",
-        imageRes = R.drawable.pretzels,
-        price = 299
+        name = "Robot Wheels",
+        tagline = "Wheels for Movement",
+        imageRes = R.drawable.robot_wheels,
+        price = 249
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Smoothies",
-        imageRes = R.drawable.smoothies,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Popcorn",
-        imageRes = R.drawable.popcorn,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Almonds",
-        imageRes = R.drawable.almonds,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Cheese",
-        imageRes = R.drawable.cheese,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Apples",
-        tagline = "A tag line",
-        imageRes = R.drawable.apples,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Apple sauce",
-        tagline = "A tag line",
-        imageRes = R.drawable.apple_sauce,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Apple chips",
-        tagline = "A tag line",
-        imageRes = R.drawable.apple_chips,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Apple juice",
-        tagline = "A tag line",
-        imageRes = R.drawable.apple_juice,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Apple pie",
-        tagline = "A tag line",
-        imageRes = R.drawable.apple_pie,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Grapes",
-        tagline = "A tag line",
-        imageRes = R.drawable.grapes,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Kiwi",
-        tagline = "A tag line",
-        imageRes = R.drawable.kiwi,
-        price = 299
-    ),
-    Snack(
-        id = Random.nextLong(),
-        name = "Mango",
-        tagline = "A tag line",
-        imageRes = R.drawable.mango,
-        price = 299
+        name = "Power Module",
+        tagline = "Power Management System",
+        imageRes = R.drawable.power_module,
+        price = 499
     )
 )
