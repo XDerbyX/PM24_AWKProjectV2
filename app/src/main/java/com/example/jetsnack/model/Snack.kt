@@ -30,30 +30,30 @@ val snacks = listOf(
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Donut",
-        tagline = "A tag line",
-        imageRes = R.drawable.donut,
+        name = "Moxie",
+        tagline = "Robot Company",
+        imageRes = R.drawable.moxie,
         price = 299
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Eclair",
-        tagline = "A tag line",
-        imageRes = R.drawable.eclair,
+        name = "Robot Dog",
+        tagline = "Weaponize Dog",
+        imageRes = R.drawable.flamerobot_dog,
         price = 299
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Froyo",
-        tagline = "A tag line",
-        imageRes = R.drawable.froyo,
+        name = "Portable Drone",
+        tagline = "A Handy Drone",
+        imageRes = R.drawable.portable_drone,
         price = 299
     ),
     Snack(
         id = Random.nextLong(),
-        name = "Gingerbread",
-        tagline = "A tag line",
-        imageRes = R.drawable.gingerbread,
+        name = "Exoskeleton Leg",
+        tagline = "A Wearable Exoskeleton Leg",
+        imageRes = R.drawable.wearable_exoskeleton_leg,
         price = 499
     ),
     Snack(
