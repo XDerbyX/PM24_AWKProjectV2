@@ -31,18 +31,18 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ChainStyle
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.jetsnack.R
-import com.example.jetsnack.model.Snack
-import com.example.jetsnack.model.snacks
+import com.example.jetsnack.model.Robot
+import com.example.jetsnack.model.Robots
 import com.example.jetsnack.ui.components.JetsnackButton
 import com.example.jetsnack.ui.components.JetsnackDivider
 import com.example.jetsnack.ui.components.JetsnackSurface
-import com.example.jetsnack.ui.components.SnackImage
+import com.example.jetsnack.ui.components.RobotImage
 import com.example.jetsnack.ui.theme.JetsnackTheme
 import com.example.jetsnack.ui.utils.formatPrice
 
 @Composable
 fun SearchResults(
-    searchResults: List<Snack>,
+    searchResults: List<Robot>,
     onSnackClick: (Long, String) -> Unit
 ) {
     Column {
@@ -62,7 +62,7 @@ fun SearchResults(
 
 @Composable
 private fun SearchResult(
-    snack: Snack,
+    robot: Robot,
     onSnackClick: (Long, String) -> Unit,
     showDivider: Boolean,
     modifier: Modifier = Modifier
@@ -70,7 +70,7 @@ private fun SearchResult(
     ConstraintLayout(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { onSnackClick(snack.id, "search") }
+            .clickable { onSnackClick(robot.id, "search") }
             .padding(horizontal = 24.dp)
     ) {
         val (divider, image, name, tag, priceSpacer, price, add) = createRefs()
@@ -83,8 +83,8 @@ private fun SearchResult(
                 }
             )
         }
-        SnackImage(
-            imageRes = snack.imageRes,
+        RobotImage(
+            imageRes = robot.imageRes,
             contentDescription = null,
             modifier = Modifier
                 .size(100.dp)
@@ -99,7 +99,7 @@ private fun SearchResult(
                 }
         )
         Text(
-            text = snack.name,
+            text = robot.name,
             style = MaterialTheme.typography.titleMedium,
             color = JetsnackTheme.colors.textSecondary,
             modifier = Modifier.constrainAs(name) {
@@ -113,7 +113,7 @@ private fun SearchResult(
             }
         )
         Text(
-            text = snack.tagline,
+            text = robot.tagline,
             style = MaterialTheme.typography.bodyLarge,
             color = JetsnackTheme.colors.textHelp,
             modifier = Modifier.constrainAs(tag) {
@@ -134,7 +134,7 @@ private fun SearchResult(
                 }
         )
         Text(
-            text = formatPrice(snack.price),
+            text = formatPrice(robot.price),
             style = MaterialTheme.typography.titleMedium,
             color = JetsnackTheme.colors.textPrimary,
             modifier = Modifier.constrainAs(price) {
@@ -207,7 +207,7 @@ private fun SearchResultPreview() {
     JetsnackTheme {
         JetsnackSurface {
             SearchResult(
-                snack = snacks[0],
+                robot = Robots[0],
                 onSnackClick = { _, _ -> },
                 showDivider = false
             )

@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
-import com.example.jetsnack.model.SnackbarManager
+import com.example.jetsnack.model.Manager
 import com.example.jetsnack.ui.theme.JetsnackTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -57,7 +57,7 @@ fun JetsnackScaffold(
 @Composable
 fun rememberJetsnackScaffoldState(
     snackBarHostState: SnackbarHostState = remember { SnackbarHostState() },
-    snackbarManager: SnackbarManager = SnackbarManager,
+    snackbarManager: Manager = Manager,
     resources: Resources = resources(),
     coroutineScope: CoroutineScope = rememberCoroutineScope()
 ): JetsnackScaffoldState = remember(snackBarHostState, snackbarManager, resources, coroutineScope) {
@@ -70,7 +70,7 @@ fun rememberJetsnackScaffoldState(
 @Stable
 class JetsnackScaffoldState(
     val snackBarHostState: SnackbarHostState,
-    private val snackbarManager: SnackbarManager,
+    private val snackbarManager: Manager,
     private val resources: Resources,
     coroutineScope: CoroutineScope
 ) {

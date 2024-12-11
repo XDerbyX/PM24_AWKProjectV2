@@ -121,7 +121,7 @@ fun NavGraphBuilder.addHomeGraph(
 ) {
     composable(HomeSections.FEED.route) { from ->
         Feed(
-            onSnackClick = { id, origin -> onSnackSelected(id, origin, from) },
+            onClick = { id, origin -> onSnackSelected(id, origin, from) },
             modifier
         )
     }

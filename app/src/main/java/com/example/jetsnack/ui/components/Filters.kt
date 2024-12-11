@@ -78,14 +78,14 @@ fun FilterBar(
                 }
             }
             items(filters) { filter ->
-                FilterChip(filter = filter, shape = MaterialTheme.shapes.small)
+                FilterItem(filter = filter, shape = MaterialTheme.shapes.small)
             }
         }
     }
 }
 
 @Composable
-fun FilterChip(
+fun FilterItem(
     filter: Filter,
     modifier: Modifier = Modifier,
     shape: Shape = MaterialTheme.shapes.small
@@ -155,7 +155,7 @@ fun FilterChip(
 @Composable
 private fun FilterDisabledPreview() {
     JetsnackTheme {
-        FilterChip(Filter(name = "Demo", enabled = false), Modifier.padding(4.dp))
+        FilterItem(Filter(name = "Demo", enabled = false), Modifier.padding(4.dp))
     }
 }
 
@@ -165,6 +165,6 @@ private fun FilterDisabledPreview() {
 @Composable
 private fun FilterEnabledPreview() {
     JetsnackTheme {
-        FilterChip(Filter(name = "Demo", enabled = true))
+        FilterItem(Filter(name = "Demo", enabled = true))
     }
 }

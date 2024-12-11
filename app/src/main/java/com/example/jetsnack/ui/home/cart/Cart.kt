@@ -57,14 +57,14 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jetsnack.R
 import com.example.jetsnack.model.OrderLine
-import com.example.jetsnack.model.SnackCollection
+import com.example.jetsnack.model.Collection
 import com.example.jetsnack.model.SnackRepo
 import com.example.jetsnack.ui.components.JetsnackButton
 import com.example.jetsnack.ui.components.JetsnackDivider
 import com.example.jetsnack.ui.components.JetsnackSurface
 import com.example.jetsnack.ui.components.QuantitySelector
-import com.example.jetsnack.ui.components.SnackCollection
-import com.example.jetsnack.ui.components.SnackImage
+import com.example.jetsnack.ui.components.RobotCollection
+import com.example.jetsnack.ui.components.RobotImage
 import com.example.jetsnack.ui.home.DestinationBar
 import com.example.jetsnack.ui.snackdetail.nonSpatialExpressiveSpring
 import com.example.jetsnack.ui.snackdetail.spatialExpressiveSpring
@@ -98,7 +98,7 @@ fun Cart(
     removeSnack: (Long) -> Unit,
     increaseItemCount: (Long) -> Unit,
     decreaseItemCount: (Long) -> Unit,
-    inspiredByCart: SnackCollection,
+    inspiredByCart: Collection,
     onSnackClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -125,7 +125,7 @@ private fun CartContent(
     removeSnack: (Long) -> Unit,
     increaseItemCount: (Long) -> Unit,
     decreaseItemCount: (Long) -> Unit,
-    inspiredByCart: SnackCollection,
+    inspiredByCart: Collection,
     onSnackClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -157,7 +157,7 @@ private fun CartContent(
                     .wrapContentHeight()
             )
         }
-        items(orderLines, key = { it.snack.id }) { orderLine ->
+        items(orderLines, key = { it.robot.id }) { orderLine ->
             SwipeDismissItem(
                 modifier = Modifier.animateItem(
                     fadeInSpec = itemAnimationSpecFade,
@@ -184,19 +184,19 @@ private fun CartContent(
                     fadeOutSpec = itemAnimationSpecFade,
                     placementSpec = itemPlacementSpec
                 ),
-                subtotal = orderLines.sumOf { it.snack.price * it.count },
+                subtotal = orderLines.sumOf { it.robot.price * it.count },
                 shippingCosts = 369
             )
         }
         item(key = "inspiredByCart") {
-            SnackCollection(
+            RobotCollection(
                 modifier = Modifier.animateItem(
                     fadeInSpec = itemAnimationSpecFade,
                     fadeOutSpec = itemAnimationSpecFade,
                     placementSpec = itemPlacementSpec
                 ),
-                snackCollection = inspiredByCart,
-                onSnackClick = onSnackClick,
+                collection = inspiredByCart,
+                onClick = onSnackClick,
                 highlight = false
             )
             Spacer(Modifier.height(56.dp))
@@ -283,7 +283,7 @@ fun CartItem(
     onSnackClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val snack = orderLine.snack
+    val snack = orderLine.robot
     ConstraintLayout(
         modifier = modifier
             .fillMaxWidth()
@@ -294,7 +294,7 @@ fun CartItem(
     ) {
         val (divider, image, name, tag, priceSpacer, price, remove, quantity) = createRefs()
         createVerticalChain(name, tag, priceSpacer, price, chainStyle = ChainStyle.Packed)
-        SnackImage(
+        RobotImage(
             imageRes = snack.imageRes,
             contentDescription = null,
             modifier = Modifier

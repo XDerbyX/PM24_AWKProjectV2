@@ -13,9 +13,9 @@ object SearchRepo {
     fun getCategories(): List<SearchCategoryCollection> = searchCategoryCollections
     fun getSuggestions(): List<SearchSuggestionGroup> = searchSuggestions
 
-    suspend fun search(query: String): List<Snack> = withContext(Dispatchers.Default) {
+    suspend fun search(query: String): List<Robot> = withContext(Dispatchers.Default) {
         delay(200L) // simulate an I/O delay
-        snacks.filter { it.name.contains(query, ignoreCase = true) }
+        Robots.filter { it.name.contains(query, ignoreCase = true) }
     }
 }
 

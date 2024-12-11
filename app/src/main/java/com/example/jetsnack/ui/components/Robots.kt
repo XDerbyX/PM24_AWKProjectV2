@@ -59,13 +59,13 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.jetsnack.R
 import com.example.jetsnack.model.CollectionType
-import com.example.jetsnack.model.Snack
-import com.example.jetsnack.model.SnackCollection
-import com.example.jetsnack.model.snacks
+import com.example.jetsnack.model.Robot
+import com.example.jetsnack.model.Collection
+import com.example.jetsnack.model.Robots
 import com.example.jetsnack.ui.LocalNavAnimatedVisibilityScope
 import com.example.jetsnack.ui.LocalSharedTransitionScope
-import com.example.jetsnack.ui.SnackSharedElementKey
-import com.example.jetsnack.ui.SnackSharedElementType
+import com.example.jetsnack.ui.RobotSharedElementKey
+import com.example.jetsnack.ui.sharedElementType
 import com.example.jetsnack.ui.snackdetail.nonSpatialExpressiveSpring
 import com.example.jetsnack.ui.snackdetail.snackDetailBoundsTransform
 import com.example.jetsnack.ui.theme.JetsnackTheme
@@ -76,9 +76,9 @@ private val Density.cardWidthWithPaddingPx
     get() = (HighlightCardWidth + HighlightCardPadding).toPx()
 
 @Composable
-fun SnackCollection(
-    snackCollection: SnackCollection,
-    onSnackClick: (Long, String) -> Unit,
+fun RobotCollection(
+    collection: Collection,
+    onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier,
     index: Int = 0,
     highlight: Boolean = true
@@ -91,7 +91,7 @@ fun SnackCollection(
                 .padding(start = 24.dp)
         ) {
             Text(
-                text = snackCollection.name,
+                text = collection.name,
                 style = MaterialTheme.typography.titleLarge,
                 color = JetsnackTheme.colors.brand,
                 maxLines = 1,
@@ -111,19 +111,19 @@ fun SnackCollection(
                 )
             }
         }
-        if (highlight && snackCollection.type == CollectionType.Highlight) {
-            HighlightedSnacks(snackCollection.id, index, snackCollection.snacks, onSnackClick)
+        if (highlight && collection.type == CollectionType.Highlight) {
+            HighlightedRobot(collection.id, index, collection.robots, onClick)
         } else {
-            Snacks(snackCollection.id, snackCollection.snacks, onSnackClick)
+            Robots(collection.id, collection.robots, onClick)
         }
     }
 }
 
 @Composable
-private fun HighlightedSnacks(
+private fun HighlightedRobot(
     snackCollectionId: Long,
     index: Int,
-    snacks: List<Snack>,
+    robots: List<Robot>,
     onSnackClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -147,11 +147,11 @@ private fun HighlightedSnacks(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         contentPadding = PaddingValues(start = 24.dp, end = 24.dp)
     ) {
-        itemsIndexed(snacks) { index, snack ->
+        itemsIndexed(robots) { index, snack ->
             HighlightSnackItem(
-                snackCollectionId = snackCollectionId,
-                snack = snack,
-                onSnackClick = onSnackClick,
+                robotCollectionId = snackCollectionId,
+                robot = snack,
+                onRobotClick = onSnackClick,
                 index = index,
                 gradient = gradient,
                 scrollProvider = scrollProvider
@@ -161,27 +161,27 @@ private fun HighlightedSnacks(
 }
 
 @Composable
-private fun Snacks(
-    snackCollectionId: Long,
-    snacks: List<Snack>,
-    onSnackClick: (Long, String) -> Unit,
+private fun Robots(
+    robotCollectionId: Long,
+    robots: List<Robot>,
+    onRobotClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyRow(
         modifier = modifier,
         contentPadding = PaddingValues(start = 12.dp, end = 12.dp)
     ) {
-        items(snacks) { snack ->
-            SnackItem(snack, snackCollectionId, onSnackClick)
+        items(robots) { robot ->
+            SnackItem(robot, robotCollectionId, onRobotClick)
         }
     }
 }
 
 @Composable
 fun SnackItem(
-    snack: Snack,
-    snackCollectionId: Long,
-    onSnackClick: (Long, String) -> Unit,
+    robot: Robot,
+    robotCollectionId: Long,
+    onRobotClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     JetsnackSurface(
@@ -203,22 +203,22 @@ fun SnackItem(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .clickable(onClick = {
-                        onSnackClick(snack.id, snackCollectionId.toString())
+                        onRobotClick(robot.id, robotCollectionId.toString())
                     })
                     .padding(8.dp)
             ) {
-                SnackImage(
-                    imageRes = snack.imageRes,
+                RobotImage(
+                    imageRes = robot.imageRes,
                     elevation = 1.dp,
                     contentDescription = null,
                     modifier = Modifier
                         .size(120.dp)
                         .sharedBounds(
                             rememberSharedContentState(
-                                key = SnackSharedElementKey(
-                                    snackId = snack.id,
-                                    origin = snackCollectionId.toString(),
-                                    type = SnackSharedElementType.Image
+                                key = RobotSharedElementKey(
+                                    snackId = robot.id,
+                                    origin = robotCollectionId.toString(),
+                                    type = sharedElementType.Image
                                 )
                             ),
                             animatedVisibilityScope = animatedVisibilityScope,
@@ -226,7 +226,7 @@ fun SnackItem(
                         )
                 )
                 Text(
-                    text = snack.name,
+                    text = robot.name,
                     style = MaterialTheme.typography.titleMedium,
                     color = JetsnackTheme.colors.textSecondary,
                     modifier = Modifier
@@ -234,10 +234,10 @@ fun SnackItem(
                         .wrapContentWidth()
                         .sharedBounds(
                             rememberSharedContentState(
-                                key = SnackSharedElementKey(
-                                    snackId = snack.id,
-                                    origin = snackCollectionId.toString(),
-                                    type = SnackSharedElementType.Title
+                                key = RobotSharedElementKey(
+                                    snackId = robot.id,
+                                    origin = robotCollectionId.toString(),
+                                    type = sharedElementType.Title
                                 )
                             ),
                             animatedVisibilityScope = animatedVisibilityScope,
@@ -254,9 +254,9 @@ fun SnackItem(
 
 @Composable
 private fun HighlightSnackItem(
-    snackCollectionId: Long,
-    snack: Snack,
-    onSnackClick: (Long, String) -> Unit,
+    robotCollectionId: Long,
+    robot: Robot,
+    onRobotClick: (Long, String) -> Unit,
     index: Int,
     gradient: List<Color>,
     scrollProvider: () -> Float,
@@ -282,10 +282,10 @@ private fun HighlightSnackItem(
                 .padding(bottom = 16.dp)
                 .sharedBounds(
                     sharedContentState = rememberSharedContentState(
-                        key = SnackSharedElementKey(
-                            snackId = snack.id,
-                            origin = snackCollectionId.toString(),
-                            type = SnackSharedElementType.Bounds
+                        key = RobotSharedElementKey(
+                            snackId = robot.id,
+                            origin = robotCollectionId.toString(),
+                            type = sharedElementType.Bounds
                         )
                     ),
                     animatedVisibilityScope = animatedVisibilityScope,
@@ -312,9 +312,9 @@ private fun HighlightSnackItem(
             Column(
                 modifier = Modifier
                     .clickable(onClick = {
-                        onSnackClick(
-                            snack.id,
-                            snackCollectionId.toString()
+                        onRobotClick(
+                            robot.id,
+                            robotCollectionId.toString()
                         )
                     })
                     .fillMaxSize()
@@ -329,10 +329,10 @@ private fun HighlightSnackItem(
                         modifier = Modifier
                             .sharedBounds(
                                 rememberSharedContentState(
-                                    key = SnackSharedElementKey(
-                                        snackId = snack.id,
-                                        origin = snackCollectionId.toString(),
-                                        type = SnackSharedElementType.Background
+                                    key = RobotSharedElementKey(
+                                        snackId = robot.id,
+                                        origin = robotCollectionId.toString(),
+                                        type = sharedElementType.Background
                                     )
                                 ),
                                 animatedVisibilityScope = animatedVisibilityScope,
@@ -358,16 +358,16 @@ private fun HighlightSnackItem(
                             )
                     )
 
-                    SnackImage(
-                        imageRes = snack.imageRes,
+                    RobotImage(
+                        imageRes = robot.imageRes,
                         contentDescription = null,
                         modifier = Modifier
                             .sharedBounds(
                                 rememberSharedContentState(
-                                    key = SnackSharedElementKey(
-                                        snackId = snack.id,
-                                        origin = snackCollectionId.toString(),
-                                        type = SnackSharedElementType.Image
+                                    key = RobotSharedElementKey(
+                                        snackId = robot.id,
+                                        origin = robotCollectionId.toString(),
+                                        type = sharedElementType.Image
                                     )
                                 ),
                                 animatedVisibilityScope = animatedVisibilityScope,
@@ -382,7 +382,7 @@ private fun HighlightSnackItem(
 
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
-                    text = snack.name,
+                    text = robot.name,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     style = MaterialTheme.typography.titleLarge,
@@ -391,10 +391,10 @@ private fun HighlightSnackItem(
                         .padding(horizontal = 16.dp)
                         .sharedBounds(
                             rememberSharedContentState(
-                                key = SnackSharedElementKey(
-                                    snackId = snack.id,
-                                    origin = snackCollectionId.toString(),
-                                    type = SnackSharedElementType.Title
+                                key = RobotSharedElementKey(
+                                    snackId = robot.id,
+                                    origin = robotCollectionId.toString(),
+                                    type = sharedElementType.Title
                                 )
                             ),
                             animatedVisibilityScope = animatedVisibilityScope,
@@ -408,17 +408,17 @@ private fun HighlightSnackItem(
                 Spacer(modifier = Modifier.height(4.dp))
 
                 Text(
-                    text = snack.tagline,
+                    text = robot.tagline,
                     style = MaterialTheme.typography.bodyLarge,
                     color = JetsnackTheme.colors.textHelp,
                     modifier = Modifier
                         .padding(horizontal = 16.dp)
                         .sharedBounds(
                             rememberSharedContentState(
-                                key = SnackSharedElementKey(
-                                    snackId = snack.id,
-                                    origin = snackCollectionId.toString(),
-                                    type = SnackSharedElementType.Tagline
+                                key = RobotSharedElementKey(
+                                    snackId = robot.id,
+                                    origin = robotCollectionId.toString(),
+                                    type = sharedElementType.Tagline
                                 )
                             ),
                             animatedVisibilityScope = animatedVisibilityScope,
@@ -443,7 +443,7 @@ fun debugPlaceholder(@DrawableRes debugPreview: Int) =
     }
 
 @Composable
-fun SnackImage(
+fun RobotImage(
     @DrawableRes
     imageRes: Int,
     contentDescription: String?,
@@ -473,13 +473,13 @@ fun SnackImage(
 @Preview("dark theme", uiMode = UI_MODE_NIGHT_YES)
 @Preview("large font", fontScale = 2f)
 @Composable
-fun SnackCardPreview() {
-    val snack = snacks.first()
+fun RobotCardPreview() {
+    val robot = Robots.first()
     JetsnackPreviewWrapper {
         HighlightSnackItem(
-            snackCollectionId = 1,
-            snack = snack,
-            onSnackClick = { _, _ -> },
+            robotCollectionId = 1,
+            robot = robot,
+            onRobotClick = { _, _ -> },
             index = 0,
             gradient = JetsnackTheme.colors.gradient6_1,
             scrollProvider = { 0f }

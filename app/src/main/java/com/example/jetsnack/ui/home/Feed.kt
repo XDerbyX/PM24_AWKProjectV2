@@ -27,34 +27,34 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetsnack.model.Filter
-import com.example.jetsnack.model.SnackCollection
+import com.example.jetsnack.model.Collection
 import com.example.jetsnack.model.SnackRepo
 import com.example.jetsnack.ui.components.FilterBar
 import com.example.jetsnack.ui.components.JetsnackDivider
 import com.example.jetsnack.ui.components.JetsnackSurface
-import com.example.jetsnack.ui.components.SnackCollection
+import com.example.jetsnack.ui.components.RobotCollection
 import com.example.jetsnack.ui.theme.JetsnackTheme
 
 @Composable
 fun Feed(
-    onSnackClick: (Long, String) -> Unit,
+    onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val snackCollections = remember { SnackRepo.getSnacks() }
+    val robotCollections = remember { SnackRepo.getSnacks() }
     val filters = remember { SnackRepo.getFilters() }
     Feed(
-        snackCollections,
+        robotCollections,
         filters,
-        onSnackClick,
+        onClick,
         modifier
     )
 }
 
 @Composable
 private fun Feed(
-    snackCollections: List<SnackCollection>,
+    collections: List<Collection>,
     filters: List<Filter>,
-    onSnackClick: (Long, String) -> Unit,
+    onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     JetsnackSurface(modifier = modifier.fillMaxSize()) {
@@ -64,14 +64,14 @@ private fun Feed(
         SharedTransitionLayout {
             Box {
                 SnackCollectionList(
-                    snackCollections,
+                    collections,
                     filters,
                     filtersVisible = filtersVisible,
                     onFiltersSelected = {
                         filtersVisible = true
                     },
                     sharedTransitionScope = this@SharedTransitionLayout,
-                    onSnackClick = onSnackClick
+                    onClick = onClick
                 )
                 DestinationBar()
                 AnimatedVisibility(filtersVisible, enter = fadeIn(), exit = fadeOut()) {
@@ -87,11 +87,11 @@ private fun Feed(
 
 @Composable
 private fun SnackCollectionList(
-    snackCollections: List<SnackCollection>,
+    collections: List<Collection>,
     filters: List<Filter>,
     filtersVisible: Boolean,
     onFiltersSelected: () -> Unit,
-    onSnackClick: (Long, String) -> Unit,
+    onClick: (Long, String) -> Unit,
     sharedTransitionScope: SharedTransitionScope,
     modifier: Modifier = Modifier
 ) {
@@ -109,14 +109,14 @@ private fun SnackCollectionList(
                 onShowFilters = onFiltersSelected
             )
         }
-        itemsIndexed(snackCollections) { index, snackCollection ->
+        itemsIndexed(collections) { index, robotCollection ->
             if (index > 0) {
                 JetsnackDivider(thickness = 2.dp)
             }
 
-            SnackCollection(
-                snackCollection = snackCollection,
-                onSnackClick = onSnackClick,
+            RobotCollection(
+                collection = robotCollection,
+                onClick = onClick,
                 index = index
             )
         }
@@ -129,6 +129,6 @@ private fun SnackCollectionList(
 @Composable
 fun HomePreview() {
     JetsnackTheme {
-        Feed(onSnackClick = { _, _ -> })
+        Feed(onClick = { _, _ -> })
     }
 }

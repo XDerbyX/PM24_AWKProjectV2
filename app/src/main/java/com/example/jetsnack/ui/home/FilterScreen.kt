@@ -56,7 +56,7 @@ import com.example.jetsnack.R
 import com.example.jetsnack.model.Filter
 import com.example.jetsnack.model.SnackRepo
 import com.example.jetsnack.ui.FilterSharedElementKey
-import com.example.jetsnack.ui.components.FilterChip
+import com.example.jetsnack.ui.components.FilterItem
 import com.example.jetsnack.ui.theme.JetsnackTheme
 
 @Composable
@@ -195,7 +195,7 @@ fun FilterChipSection(title: String, filters: List<Filter>) {
             .padding(horizontal = 4.dp)
     ) {
         filters.forEach { filter ->
-            FilterChip(
+            FilterItem(
                 filter = filter,
                 modifier = Modifier.padding(end = 4.dp, bottom = 8.dp)
             )

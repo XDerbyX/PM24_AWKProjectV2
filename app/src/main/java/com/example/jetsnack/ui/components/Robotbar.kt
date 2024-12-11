@@ -14,8 +14,8 @@ import com.example.jetsnack.ui.theme.JetsnackTheme
  * [com.example.jetsnack.ui.theme.JetsnackColors]
  */
 @Composable
-fun JetsnackSnackbar(
-    snackbarData: SnackbarData,
+fun JetsnackRobotbar(
+    robotbarData: SnackbarData,
     modifier: Modifier = Modifier,
     actionOnNewLine: Boolean = false,
     shape: Shape = MaterialTheme.shapes.small,
@@ -24,7 +24,7 @@ fun JetsnackSnackbar(
     actionColor: Color = JetsnackTheme.colors.brand
 ) {
     Snackbar(
-        snackbarData = snackbarData,
+        snackbarData = robotbarData,
         modifier = modifier,
         actionOnNewLine = actionOnNewLine,
         shape = shape,

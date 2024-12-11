@@ -4,10 +4,10 @@ import androidx.compose.runtime.Immutable
 import kotlin.random.Random
 
 @Immutable
-data class SnackCollection(
+data class Collection(
     val id: Long,
     val name: String,
-    val snacks: List<Snack>,
+    val robots: List<Robot>,
     val type: CollectionType = CollectionType.Normal
 )
 
@@ -17,8 +17,8 @@ enum class CollectionType { Normal, Highlight }
  * A fake repo
  */
 object SnackRepo {
-    fun getSnacks(): List<SnackCollection> = snackCollections
-    fun getSnack(snackId: Long) = snacks.find { it.id == snackId }!!
+    fun getSnacks(): List<Collection> = collections
+    fun getSnack(snackId: Long) = Robots.find { it.id == snackId }!!
     fun getRelated(@Suppress("UNUSED_PARAMETER") snackId: Long) = related
     fun getInspiredByCart() = inspiredByCart
     fun getFilters() = filters
@@ -34,20 +34,20 @@ object SnackRepo {
  * Static data
  */
 
-private val tastyTreats = SnackCollection(
+private val picks = Collection(
     id = 1L,
     name = "Dzidan's picks",
     type = CollectionType.Highlight,
-    snacks = snacks.subList(0, 13)
+    robots = Robots.subList(0, 13)
 )
 
-private val popular = SnackCollection(
+private val popular = Collection(
     id = Random.nextLong(),
     name = "Popular on UNHAS",
-    snacks = snacks.subList(14, 19)
+    robots = Robots.subList(14, 19)
 )
 
-private val wfhFavs = tastyTreats.copy(
+private val awkFavs = picks.copy(
     id = Random.nextLong(),
     name = "AWK favourites"
 )
@@ -57,25 +57,25 @@ private val newlyAdded = popular.copy(
     name = "Newly Added"
 )
 
-private val exclusive = tastyTreats.copy(
+private val exclusive = picks.copy(
     id = Random.nextLong(),
     name = "Only on AWK"
 )
 
-private val also = tastyTreats.copy(
+private val also = picks.copy(
     id = Random.nextLong(),
     name = "Customers also bought"
 )
 
-private val inspiredByCart = tastyTreats.copy(
+private val inspiredByCart = picks.copy(
     id = Random.nextLong(),
     name = "Inspired by your cart"
 )
 
-private val snackCollections = listOf(
-    tastyTreats,
+private val collections = listOf(
+    picks,
     popular,
-    wfhFavs,
+    awkFavs,
     newlyAdded,
     exclusive
 )
@@ -86,13 +86,13 @@ private val related = listOf(
 )
 
 private val cart = listOf(
-    OrderLine(snacks[4], 2),
-    OrderLine(snacks[6], 3),
-    OrderLine(snacks[8], 1)
+    OrderLine(Robots[4], 2),
+    OrderLine(Robots[6], 3),
+    OrderLine(Robots[8], 1)
 )
 
 @Immutable
 data class OrderLine(
-    val snack: Snack,
+    val robot: Robot,
     val count: Int
 )

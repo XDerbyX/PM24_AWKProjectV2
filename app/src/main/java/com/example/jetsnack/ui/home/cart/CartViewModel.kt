@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.jetsnack.R
 import com.example.jetsnack.model.OrderLine
 import com.example.jetsnack.model.SnackRepo
-import com.example.jetsnack.model.SnackbarManager
+import com.example.jetsnack.model.Manager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
  * TODO: Move data to Repository so it can be displayed and changed consistently throughout the app.
  */
 class CartViewModel(
-    private val snackbarManager: SnackbarManager,
+    private val snackbarManager: Manager,
     snackRepository: SnackRepo
 ) : ViewModel() {
 
@@ -29,7 +29,7 @@ class CartViewModel(
 
     fun increaseSnackCount(snackId: Long) {
         if (!shouldRandomlyFail()) {
-            val currentCount = _orderLines.value.first { it.snack.id == snackId }.count
+            val currentCount = _orderLines.value.first { it.robot.id == snackId }.count
             updateSnackCount(snackId, currentCount + 1)
         } else {
             snackbarManager.showMessage(R.string.cart_increase_error)
@@ -38,7 +38,7 @@ class CartViewModel(
 
     fun decreaseSnackCount(snackId: Long) {
         if (!shouldRandomlyFail()) {
-            val currentCount = _orderLines.value.first { it.snack.id == snackId }.count
+            val currentCount = _orderLines.value.first { it.robot.id == snackId }.count
             if (currentCount == 1) {
                 // remove snack from cart
                 removeSnack(snackId)
@@ -52,12 +52,12 @@ class CartViewModel(
     }
 
     fun removeSnack(snackId: Long) {
-        _orderLines.value = _orderLines.value.filter { it.snack.id != snackId }
+        _orderLines.value = _orderLines.value.filter { it.robot.id != snackId }
     }
 
     private fun updateSnackCount(snackId: Long, count: Int) {
         _orderLines.value = _orderLines.value.map {
-            if (it.snack.id == snackId) {
+            if (it.robot.id == snackId) {
                 it.copy(count = count)
             } else {
                 it
@@ -70,7 +70,7 @@ class CartViewModel(
      */
     companion object {
         fun provideFactory(
-            snackbarManager: SnackbarManager = SnackbarManager,
+            snackbarManager: Manager = Manager,
             snackRepository: SnackRepo = SnackRepo
         ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")

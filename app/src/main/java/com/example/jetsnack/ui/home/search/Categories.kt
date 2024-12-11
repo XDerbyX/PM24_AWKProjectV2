@@ -29,7 +29,7 @@ import androidx.compose.ui.unit.dp
 import com.example.jetsnack.R
 import com.example.jetsnack.model.SearchCategory
 import com.example.jetsnack.model.SearchCategoryCollection
-import com.example.jetsnack.ui.components.SnackImage
+import com.example.jetsnack.ui.components.RobotImage
 import com.example.jetsnack.ui.components.VerticalGrid
 import com.example.jetsnack.ui.theme.JetsnackTheme
 import kotlin.math.max
@@ -105,7 +105,7 @@ private fun SearchCategory(
                     .padding(4.dp)
                     .padding(start = 8.dp)
             )
-            SnackImage(
+            RobotImage(
                 imageRes = category.imageRes,
                 contentDescription = null,
                 modifier = Modifier.fillMaxSize()

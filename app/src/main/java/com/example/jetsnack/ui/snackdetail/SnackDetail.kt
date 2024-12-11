@@ -81,20 +81,20 @@ import androidx.compose.ui.unit.lerp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.util.lerp
 import com.example.jetsnack.R
-import com.example.jetsnack.model.Snack
-import com.example.jetsnack.model.SnackCollection
+import com.example.jetsnack.model.Robot
+import com.example.jetsnack.model.Collection
 import com.example.jetsnack.model.SnackRepo
 import com.example.jetsnack.ui.LocalNavAnimatedVisibilityScope
 import com.example.jetsnack.ui.LocalSharedTransitionScope
-import com.example.jetsnack.ui.SnackSharedElementKey
-import com.example.jetsnack.ui.SnackSharedElementType
+import com.example.jetsnack.ui.RobotSharedElementKey
+import com.example.jetsnack.ui.sharedElementType
 import com.example.jetsnack.ui.components.JetsnackButton
 import com.example.jetsnack.ui.components.JetsnackDivider
 import com.example.jetsnack.ui.components.JetsnackPreviewWrapper
 import com.example.jetsnack.ui.components.JetsnackSurface
 import com.example.jetsnack.ui.components.QuantitySelector
-import com.example.jetsnack.ui.components.SnackCollection
-import com.example.jetsnack.ui.components.SnackImage
+import com.example.jetsnack.ui.components.RobotCollection
+import com.example.jetsnack.ui.components.RobotImage
 import com.example.jetsnack.ui.theme.JetsnackTheme
 import com.example.jetsnack.ui.theme.Neutral8
 import com.example.jetsnack.ui.utils.formatPrice
@@ -152,10 +152,10 @@ fun SnackDetail(
                 .clip(RoundedCornerShape(roundedCornerAnim))
                 .sharedBounds(
                     rememberSharedContentState(
-                        key = SnackSharedElementKey(
+                        key = RobotSharedElementKey(
                             snackId = snack.id,
                             origin = origin,
-                            type = SnackSharedElementType.Bounds
+                            type = sharedElementType.Bounds
                         )
                     ),
                     animatedVisibilityScope,
@@ -206,10 +206,10 @@ private fun Header(snackId: Long, origin: String) {
             modifier = Modifier
                 .sharedBounds(
                     rememberSharedContentState(
-                        key = SnackSharedElementKey(
+                        key = RobotSharedElementKey(
                             snackId = snackId,
                             origin = origin,
-                            type = SnackSharedElementType.Background
+                            type = sharedElementType.Background
                         )
                     ),
                     animatedVisibilityScope = animatedVisibilityScope,
@@ -269,7 +269,7 @@ private fun SharedTransitionScope.Up(upPress: () -> Unit) {
 
 @Composable
 private fun Body(
-    related: List<SnackCollection>,
+    related: List<Collection>,
     scroll: ScrollState
 ) {
     val sharedTransitionScope =
@@ -355,9 +355,9 @@ private fun Body(
 
                         related.forEach { snackCollection ->
                             key(snackCollection.id) {
-                                SnackCollection(
-                                    snackCollection = snackCollection,
-                                    onSnackClick = { _, _ -> },
+                                RobotCollection(
+                                    collection = snackCollection,
+                                    onClick = { _, _ -> },
                                     highlight = false
                                 )
                             }
@@ -377,7 +377,7 @@ private fun Body(
 }
 
 @Composable
-private fun Title(snack: Snack, origin: String, scrollProvider: () -> Int) {
+private fun Title(robot: Robot, origin: String, scrollProvider: () -> Int) {
     val maxOffset = with(LocalDensity.current) { MaxTitleOffset.toPx() }
     val minOffset = with(LocalDensity.current) { MinTitleOffset.toPx() }
     val sharedTransitionScope = LocalSharedTransitionScope.current
@@ -401,17 +401,17 @@ private fun Title(snack: Snack, origin: String, scrollProvider: () -> Int) {
         ) {
             Spacer(Modifier.height(16.dp))
             Text(
-                text = snack.name,
+                text = robot.name,
                 fontStyle = FontStyle.Italic,
                 style = MaterialTheme.typography.headlineMedium,
                 color = JetsnackTheme.colors.textSecondary,
                 modifier = HzPadding
                     .sharedBounds(
                         rememberSharedContentState(
-                            key = SnackSharedElementKey(
-                                snackId = snack.id,
+                            key = RobotSharedElementKey(
+                                snackId = robot.id,
                                 origin = origin,
-                                type = SnackSharedElementType.Title
+                                type = sharedElementType.Title
                             )
                         ),
                         animatedVisibilityScope = animatedVisibilityScope,
@@ -420,7 +420,7 @@ private fun Title(snack: Snack, origin: String, scrollProvider: () -> Int) {
                     .wrapContentWidth()
             )
             Text(
-                text = snack.tagline,
+                text = robot.tagline,
                 fontStyle = FontStyle.Italic,
                 style = MaterialTheme.typography.titleSmall,
                 fontSize = 20.sp,
@@ -428,10 +428,10 @@ private fun Title(snack: Snack, origin: String, scrollProvider: () -> Int) {
                 modifier = HzPadding
                     .sharedBounds(
                         rememberSharedContentState(
-                            key = SnackSharedElementKey(
-                                snackId = snack.id,
+                            key = RobotSharedElementKey(
+                                snackId = robot.id,
                                 origin = origin,
-                                type = SnackSharedElementType.Tagline
+                                type = sharedElementType.Tagline
                             )
                         ),
                         animatedVisibilityScope = animatedVisibilityScope,
@@ -442,7 +442,7 @@ private fun Title(snack: Snack, origin: String, scrollProvider: () -> Int) {
             Spacer(Modifier.height(4.dp))
             with(animatedVisibilityScope) {
                 Text(
-                    text = formatPrice(snack.price),
+                    text = formatPrice(robot.price),
                     style = MaterialTheme.typography.titleLarge,
                     color = JetsnackTheme.colors.textPrimary,
                     modifier = HzPadding
@@ -482,16 +482,16 @@ private fun Image(
             ?: throw IllegalStateException("No animatedVisibilityScope found")
 
         with(sharedTransitionScope) {
-            SnackImage(
+            RobotImage(
                 imageRes = imageRes,
                 contentDescription = null,
                 modifier = Modifier
                     .sharedBounds(
                         rememberSharedContentState(
-                            key = SnackSharedElementKey(
+                            key = RobotSharedElementKey(
                                 snackId = snackId,
                                 origin = origin,
-                                type = SnackSharedElementType.Image
+                                type = sharedElementType.Image
                             )
                         ),
                         animatedVisibilityScope = animatedVisibilityScope,

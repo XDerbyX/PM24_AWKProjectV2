@@ -30,14 +30,14 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.navArgument
 import com.example.jetsnack.ui.auth.Login
 import com.example.jetsnack.ui.components.JetsnackScaffold
-import com.example.jetsnack.ui.components.JetsnackSnackbar
+import com.example.jetsnack.ui.components.JetsnackRobotbar
 import com.example.jetsnack.ui.components.rememberJetsnackScaffoldState
 import com.example.jetsnack.ui.home.HomeSections
 import com.example.jetsnack.ui.home.JetsnackBottomBar
 import com.example.jetsnack.ui.home.addHomeGraph
 import com.example.jetsnack.ui.home.composableWithCompositionLocal
 import com.example.jetsnack.ui.navigation.MainDestinations
-import com.example.jetsnack.ui.navigation.rememberJetsnackNavController
+import com.example.jetsnack.ui.navigation.rememberNavController
 import com.example.jetsnack.ui.snackdetail.SnackDetail
 import com.example.jetsnack.ui.snackdetail.nonSpatialExpressiveSpring
 import com.example.jetsnack.ui.snackdetail.spatialExpressiveSpring
@@ -45,9 +45,9 @@ import com.example.jetsnack.ui.theme.JetsnackTheme
 
 @Preview
 @Composable
-fun JetsnackApp() {
+fun AWKProjectApp() {
     JetsnackTheme {
-        val jetsnackNavController = rememberJetsnackNavController()
+        val jetsnackNavController = rememberNavController()
         SharedTransitionLayout {
             CompositionLocalProvider(
                 LocalSharedTransitionScope provides this
@@ -102,7 +102,7 @@ fun MainContainer(
     onSnackSelected: (Long, String, NavBackStackEntry) -> Unit
 ) {
     val jetsnackScaffoldState = rememberJetsnackScaffoldState()
-    val nestedNavController = rememberJetsnackNavController()
+    val nestedNavController = rememberNavController()
     val navBackStackEntry by nestedNavController.navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
     val sharedTransitionScope = LocalSharedTransitionScope.current
@@ -142,7 +142,7 @@ fun MainContainer(
             SnackbarHost(
                 hostState = it,
                 modifier = Modifier.systemBarsPadding(),
-                snackbar = { snackbarData -> JetsnackSnackbar(snackbarData) }
+                snackbar = { snackbarData -> JetsnackRobotbar(snackbarData) }
             )
         },
         snackBarHostState = jetsnackScaffoldState.snackBarHostState,
