@@ -24,7 +24,7 @@ fun JetsnackCard(
     elevation: Dp = 4.dp,
     content: @Composable () -> Unit
 ) {
-    JetsnackSurface(
+    Surface(
         modifier = modifier,
         shape = shape,
         color = color,

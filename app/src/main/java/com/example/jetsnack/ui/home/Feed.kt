@@ -28,10 +28,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetsnack.model.Filter
 import com.example.jetsnack.model.Collection
-import com.example.jetsnack.model.SnackRepo
+import com.example.jetsnack.model.RobotRepo
 import com.example.jetsnack.ui.components.FilterBar
 import com.example.jetsnack.ui.components.JetsnackDivider
-import com.example.jetsnack.ui.components.JetsnackSurface
+import com.example.jetsnack.ui.components.Surface
 import com.example.jetsnack.ui.components.RobotCollection
 import com.example.jetsnack.ui.theme.JetsnackTheme
 
@@ -40,8 +40,8 @@ fun Feed(
     onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val robotCollections = remember { SnackRepo.getSnacks() }
-    val filters = remember { SnackRepo.getFilters() }
+    val robotCollections = remember { RobotRepo.getSnacks() }
+    val filters = remember { RobotRepo.getFilters() }
     Feed(
         robotCollections,
         filters,
@@ -57,7 +57,7 @@ private fun Feed(
     onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    JetsnackSurface(modifier = modifier.fillMaxSize()) {
+    Surface(modifier = modifier.fillMaxSize()) {
         var filtersVisible by remember {
             mutableStateOf(false)
         }

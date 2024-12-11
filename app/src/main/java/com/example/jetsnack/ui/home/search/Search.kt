@@ -43,18 +43,18 @@ import com.example.jetsnack.model.SearchCategoryCollection
 import com.example.jetsnack.model.SearchRepo
 import com.example.jetsnack.model.SearchSuggestionGroup
 import com.example.jetsnack.model.Robot
-import com.example.jetsnack.model.SnackRepo
+import com.example.jetsnack.model.RobotRepo
 import com.example.jetsnack.ui.components.JetsnackDivider
-import com.example.jetsnack.ui.components.JetsnackSurface
+import com.example.jetsnack.ui.components.Surface
 import com.example.jetsnack.ui.theme.JetsnackTheme
 
 @Composable
 fun Search(
-    onSnackClick: (Long, String) -> Unit,
+    onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier,
     state: SearchState = rememberSearchState()
 ) {
-    JetsnackSurface(modifier = modifier.fillMaxSize()) {
+    Surface(modifier = modifier.fillMaxSize()) {
         Column {
             Spacer(modifier = Modifier.statusBarsPadding())
             SearchBar(
@@ -83,7 +83,7 @@ fun Search(
 
                 SearchDisplay.Results -> SearchResults(
                     state.searchResults,
-                    onSnackClick
+                    onClick
                 )
 
                 SearchDisplay.NoResults -> NoResults(state.query.text)
@@ -103,7 +103,7 @@ private fun rememberSearchState(
     searching: Boolean = false,
     categories: List<SearchCategoryCollection> = SearchRepo.getCategories(),
     suggestions: List<SearchSuggestionGroup> = SearchRepo.getSuggestions(),
-    filters: List<Filter> = SnackRepo.getFilters(),
+    filters: List<Filter> = RobotRepo.getFilters(),
     searchResults: List<Robot> = emptyList()
 ): SearchState {
     return remember {
@@ -155,7 +155,7 @@ private fun SearchBar(
     searching: Boolean,
     modifier: Modifier = Modifier
 ) {
-    JetsnackSurface(
+    Surface(
         color = JetsnackTheme.colors.uiFloated,
         contentColor = JetsnackTheme.colors.textSecondary,
         shape = MaterialTheme.shapes.small,
@@ -236,7 +236,7 @@ private fun SearchHint() {
 @Composable
 private fun SearchBarPreview() {
     JetsnackTheme {
-        JetsnackSurface {
+        Surface {
             SearchBar(
                 query = TextFieldValue(""),
                 onQueryChange = { },

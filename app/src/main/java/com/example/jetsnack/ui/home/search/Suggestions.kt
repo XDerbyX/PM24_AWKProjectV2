@@ -19,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetsnack.model.SearchRepo
 import com.example.jetsnack.model.SearchSuggestionGroup
-import com.example.jetsnack.ui.components.JetsnackSurface
+import com.example.jetsnack.ui.components.Surface
 import com.example.jetsnack.ui.theme.JetsnackTheme
 
 @Composable
@@ -85,7 +85,7 @@ private fun Suggestion(
 @Composable
 fun PreviewSuggestions() {
     JetsnackTheme {
-        JetsnackSurface {
+        Surface {
             SearchSuggestions(
                 suggestions = SearchRepo.getSuggestions(),
                 onSuggestionSelect = { }

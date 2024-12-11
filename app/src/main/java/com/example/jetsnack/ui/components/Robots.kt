@@ -184,7 +184,7 @@ fun SnackItem(
     onRobotClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    JetsnackSurface(
+    Surface(
         shape = MaterialTheme.shapes.medium,
         modifier = modifier.padding(
             start = 4.dp,
@@ -450,7 +450,7 @@ fun RobotImage(
     modifier: Modifier = Modifier,
     elevation: Dp = 0.dp
 ) {
-    JetsnackSurface(
+    Surface(
         elevation = elevation,
         shape = CircleShape,
         modifier = modifier

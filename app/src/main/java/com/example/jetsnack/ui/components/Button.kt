@@ -47,7 +47,7 @@ fun JetsnackButton(
     contentPadding: PaddingValues = ButtonDefaults.ContentPadding,
     content: @Composable RowScope.() -> Unit
 ) {
-    JetsnackSurface(
+    Surface(
         shape = shape,
         color = Color.Transparent,
         contentColor = if (enabled) contentColor else disabledContentColor,

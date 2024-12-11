@@ -77,7 +77,7 @@ fun QuantitySelector(
 @Composable
 fun QuantitySelectorPreview() {
     JetsnackTheme {
-        JetsnackSurface {
+        Surface {
             QuantitySelector(1, {}, {})
         }
     }
@@ -87,7 +87,7 @@ fun QuantitySelectorPreview() {
 @Composable
 fun QuantitySelectorPreviewRtl() {
     JetsnackTheme {
-        JetsnackSurface {
+        Surface {
             CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
                 QuantitySelector(1, {}, {})
             }

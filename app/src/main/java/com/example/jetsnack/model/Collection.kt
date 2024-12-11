@@ -16,7 +16,7 @@ enum class CollectionType { Normal, Highlight }
 /**
  * A fake repo
  */
-object SnackRepo {
+object RobotRepo {
     fun getSnacks(): List<Collection> = collections
     fun getSnack(snackId: Long) = Robots.find { it.id == snackId }!!
     fun getRelated(@Suppress("UNUSED_PARAMETER") snackId: Long) = related

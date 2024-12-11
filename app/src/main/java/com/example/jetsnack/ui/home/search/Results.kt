@@ -35,7 +35,7 @@ import com.example.jetsnack.model.Robot
 import com.example.jetsnack.model.Robots
 import com.example.jetsnack.ui.components.JetsnackButton
 import com.example.jetsnack.ui.components.JetsnackDivider
-import com.example.jetsnack.ui.components.JetsnackSurface
+import com.example.jetsnack.ui.components.Surface
 import com.example.jetsnack.ui.components.RobotImage
 import com.example.jetsnack.ui.theme.JetsnackTheme
 import com.example.jetsnack.ui.utils.formatPrice
@@ -205,7 +205,7 @@ fun NoResults(
 @Composable
 private fun SearchResultPreview() {
     JetsnackTheme {
-        JetsnackSurface {
+        Surface {
             SearchResult(
                 robot = Robots[0],
                 onSnackClick = { _, _ -> },

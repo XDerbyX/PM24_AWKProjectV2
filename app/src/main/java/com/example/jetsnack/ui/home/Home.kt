@@ -62,7 +62,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.example.jetsnack.R
 import com.example.jetsnack.ui.LocalNavAnimatedVisibilityScope
-import com.example.jetsnack.ui.components.JetsnackSurface
+import com.example.jetsnack.ui.components.Surface
 import com.example.jetsnack.ui.home.cart.Cart
 import com.example.jetsnack.ui.home.search.Search
 import com.example.jetsnack.ui.robotdetail.nonSpatialExpressiveSpring
@@ -127,13 +127,13 @@ fun NavGraphBuilder.addHomeGraph(
     }
     composable(HomeSections.SEARCH.route) { from ->
         Search(
-            onSnackClick = { id, origin -> onSnackSelected(id, origin, from) },
+            onClick = { id, origin -> onSnackSelected(id, origin, from) },
             modifier
         )
     }
     composable(HomeSections.CART.route) { from ->
         Cart(
-            onSnackClick = { id, origin -> onSnackSelected(id, origin, from) },
+            onClick = { id, origin -> onSnackSelected(id, origin, from) },
             modifier
         )
     }
@@ -165,7 +165,7 @@ fun JetsnackBottomBar(
     val routes = remember { tabs.map { it.route } }
     val currentSection = tabs.first { it.route == currentRoute }
 
-    JetsnackSurface(
+    Surface(
         modifier = modifier,
         color = color,
         contentColor = contentColor

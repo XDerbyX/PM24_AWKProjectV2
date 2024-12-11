@@ -54,7 +54,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.jetsnack.R
 import com.example.jetsnack.model.Filter
-import com.example.jetsnack.model.SnackRepo
+import com.example.jetsnack.model.RobotRepo
 import com.example.jetsnack.ui.FilterSharedElementKey
 import com.example.jetsnack.ui.components.FilterItem
 import com.example.jetsnack.ui.theme.JetsnackTheme
@@ -65,9 +65,9 @@ fun FilterScreen(
     animatedVisibilityScope: AnimatedVisibilityScope,
     onDismiss: () -> Unit
 ) {
-    var sortState by remember { mutableStateOf(SnackRepo.getSortDefault()) }
+    var sortState by remember { mutableStateOf(RobotRepo.getSortDefault()) }
     var maxCalories by remember { mutableFloatStateOf(0f) }
-    val defaultFilter = SnackRepo.getSortDefault()
+    val defaultFilter = RobotRepo.getSortDefault()
 
     Box(
         modifier = Modifier
@@ -79,9 +79,9 @@ fun FilterScreen(
                 // capture click
             }
     ) {
-        val priceFilters = remember { SnackRepo.getPriceFilters() }
-        val categoryFilters = remember { SnackRepo.getCategoryFilters() }
-        val lifeStyleFilters = remember { SnackRepo.getLifeStyleFilters() }
+        val priceFilters = remember { RobotRepo.getPriceFilters() }
+        val categoryFilters = remember { RobotRepo.getCategoryFilters() }
+        val lifeStyleFilters = remember { RobotRepo.getLifeStyleFilters() }
         Spacer(
             modifier = Modifier
                 .fillMaxSize()
@@ -216,7 +216,7 @@ fun SortFiltersSection(sortState: String, onFilterChange: (Filter) -> Unit) {
 
 @Composable
 fun SortFilters(
-    sortFilters: List<Filter> = SnackRepo.getSortFilters(),
+    sortFilters: List<Filter> = RobotRepo.getSortFilters(),
     sortState: String,
     onChanged: (Filter) -> Unit
 ) {

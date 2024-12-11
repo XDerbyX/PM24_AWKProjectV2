@@ -83,7 +83,7 @@ import androidx.compose.ui.util.lerp
 import com.example.jetsnack.R
 import com.example.jetsnack.model.Robot
 import com.example.jetsnack.model.Collection
-import com.example.jetsnack.model.SnackRepo
+import com.example.jetsnack.model.RobotRepo
 import com.example.jetsnack.ui.LocalNavAnimatedVisibilityScope
 import com.example.jetsnack.ui.LocalSharedTransitionScope
 import com.example.jetsnack.ui.RobotSharedElementKey
@@ -91,7 +91,7 @@ import com.example.jetsnack.ui.sharedElementType
 import com.example.jetsnack.ui.components.JetsnackButton
 import com.example.jetsnack.ui.components.JetsnackDivider
 import com.example.jetsnack.ui.components.JetsnackPreviewWrapper
-import com.example.jetsnack.ui.components.JetsnackSurface
+import com.example.jetsnack.ui.components.Surface
 import com.example.jetsnack.ui.components.QuantitySelector
 import com.example.jetsnack.ui.components.RobotCollection
 import com.example.jetsnack.ui.components.RobotImage
@@ -132,8 +132,8 @@ fun SnackDetail(
     origin: String,
     upPress: () -> Unit
 ) {
-    val snack = remember(snackId) { SnackRepo.getSnack(snackId) }
-    val related = remember(snackId) { SnackRepo.getRelated(snackId) }
+    val snack = remember(snackId) { RobotRepo.getSnack(snackId) }
+    val related = remember(snackId) { RobotRepo.getRelated(snackId) }
     val sharedTransitionScope = LocalSharedTransitionScope.current
         ?: throw IllegalStateException("No Scope found")
     val animatedVisibilityScope = LocalNavAnimatedVisibilityScope.current
@@ -288,7 +288,7 @@ private fun Body(
             ) {
                 Spacer(Modifier.height(GradientScroll))
                 Spacer(Modifier.height(ImageOverlap))
-                JetsnackSurface(
+                Surface(
                     Modifier
                         .fillMaxWidth()
                         .padding(top = 16.dp),
@@ -549,7 +549,7 @@ private fun CartBottomBar(modifier: Modifier = Modifier) {
         LocalNavAnimatedVisibilityScope.current ?: throw IllegalStateException("No Shared scope")
     with(sharedTransitionScope) {
         with(animatedVisibilityScope) {
-            JetsnackSurface(
+            Surface(
                 modifier = modifier
                     .renderInSharedTransitionScopeOverlay(zIndexInOverlay = 4f)
                     .animateEnterExit(

@@ -105,7 +105,7 @@ fun FilterItem(
         label = "text color"
     )
 
-    JetsnackSurface(
+    Surface(
         modifier = modifier,
         color = backgroundColor,
         contentColor = textColor,

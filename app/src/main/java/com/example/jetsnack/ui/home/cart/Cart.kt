@@ -33,7 +33,6 @@ import androidx.compose.material.icons.filled.DeleteForever
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -58,10 +57,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.jetsnack.R
 import com.example.jetsnack.model.OrderLine
 import com.example.jetsnack.model.Collection
-import com.example.jetsnack.model.SnackRepo
+import com.example.jetsnack.model.RobotRepo
 import com.example.jetsnack.ui.components.JetsnackButton
 import com.example.jetsnack.ui.components.JetsnackDivider
-import com.example.jetsnack.ui.components.JetsnackSurface
+import com.example.jetsnack.ui.components.Surface
 import com.example.jetsnack.ui.components.QuantitySelector
 import com.example.jetsnack.ui.components.RobotCollection
 import com.example.jetsnack.ui.components.RobotImage
@@ -75,19 +74,19 @@ import kotlin.math.roundToInt
 
 @Composable
 fun Cart(
-    onSnackClick: (Long, String) -> Unit,
+    onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CartViewModel = viewModel(factory = CartViewModel.provideFactory())
 ) {
     val orderLines by viewModel.orderLines.collectAsStateWithLifecycle()
-    val inspiredByCart = remember { SnackRepo.getInspiredByCart() }
+    val inspiredByCart = remember { RobotRepo.getInspiredByCart() }
     Cart(
         orderLines = orderLines,
-        removeSnack = viewModel::removeSnack,
+        removeRobot = viewModel::removeRobot,
         increaseItemCount = viewModel::increaseSnackCount,
         decreaseItemCount = viewModel::decreaseSnackCount,
         inspiredByCart = inspiredByCart,
-        onSnackClick = onSnackClick,
+        onClick = onClick,
         modifier = modifier
     )
 }
@@ -95,22 +94,22 @@ fun Cart(
 @Composable
 fun Cart(
     orderLines: List<OrderLine>,
-    removeSnack: (Long) -> Unit,
+    removeRobot: (Long) -> Unit,
     increaseItemCount: (Long) -> Unit,
     decreaseItemCount: (Long) -> Unit,
     inspiredByCart: Collection,
-    onSnackClick: (Long, String) -> Unit,
+    onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    JetsnackSurface(modifier = modifier.fillMaxSize()) {
+    Surface(modifier = modifier.fillMaxSize()) {
         Box(modifier = Modifier.fillMaxSize()) {
             CartContent(
                 orderLines = orderLines,
-                removeSnack = removeSnack,
+                removeRobot = removeRobot,
                 increaseItemCount = increaseItemCount,
                 decreaseItemCount = decreaseItemCount,
                 inspiredByCart = inspiredByCart,
-                onSnackClick = onSnackClick,
+                onClick = onClick,
                 modifier = Modifier.align(Alignment.TopCenter)
             )
             DestinationBar(modifier = Modifier.align(Alignment.TopCenter))
@@ -122,15 +121,15 @@ fun Cart(
 @Composable
 private fun CartContent(
     orderLines: List<OrderLine>,
-    removeSnack: (Long) -> Unit,
+    removeRobot: (Long) -> Unit,
     increaseItemCount: (Long) -> Unit,
     decreaseItemCount: (Long) -> Unit,
     inspiredByCart: Collection,
-    onSnackClick: (Long, String) -> Unit,
+    onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     val resources = LocalContext.current.resources
-    val snackCountFormattedString = remember(orderLines.size, resources) {
+    val countFormattedString = remember(orderLines.size, resources) {
         resources.getQuantityString(
             R.plurals.cart_order_count,
             orderLines.size, orderLines.size
@@ -146,7 +145,7 @@ private fun CartContent(
                 )
             )
             Text(
-                text = stringResource(R.string.cart_order_header, snackCountFormattedString),
+                text = stringResource(R.string.cart_order_header, countFormattedString),
                 style = MaterialTheme.typography.titleLarge,
                 color = JetsnackTheme.colors.brand,
                 maxLines = 1,
@@ -170,10 +169,10 @@ private fun CartContent(
             ) {
                 CartItem(
                     orderLine = orderLine,
-                    removeSnack = removeSnack,
+                    removeSnack = removeRobot,
                     increaseItemCount = increaseItemCount,
                     decreaseItemCount = decreaseItemCount,
-                    onSnackClick = onSnackClick
+                    onClick = onClick
                 )
             }
         }
@@ -196,7 +195,7 @@ private fun CartContent(
                     placementSpec = itemPlacementSpec
                 ),
                 collection = inspiredByCart,
-                onClick = onSnackClick,
+                onClick = onClick,
                 highlight = false
             )
             Spacer(Modifier.height(56.dp))
@@ -280,14 +279,14 @@ fun CartItem(
     removeSnack: (Long) -> Unit,
     increaseItemCount: (Long) -> Unit,
     decreaseItemCount: (Long) -> Unit,
-    onSnackClick: (Long, String) -> Unit,
+    onClick: (Long, String) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val snack = orderLine.robot
+    val robot = orderLine.robot
     ConstraintLayout(
         modifier = modifier
             .fillMaxWidth()
-            .clickable { onSnackClick(snack.id, "cart") }
+            .clickable { onClick(robot.id, "cart") }
             .background(JetsnackTheme.colors.uiBackground)
             .padding(horizontal = 24.dp)
 
@@ -295,7 +294,7 @@ fun CartItem(
         val (divider, image, name, tag, priceSpacer, price, remove, quantity) = createRefs()
         createVerticalChain(name, tag, priceSpacer, price, chainStyle = ChainStyle.Packed)
         RobotImage(
-            imageRes = snack.imageRes,
+            imageRes = robot.imageRes,
             contentDescription = null,
             modifier = Modifier
                 .size(100.dp)
@@ -306,7 +305,7 @@ fun CartItem(
                 }
         )
         Text(
-            text = snack.name,
+            text = robot.name,
             style = MaterialTheme.typography.titleMedium,
             color = JetsnackTheme.colors.textSecondary,
             modifier = Modifier.constrainAs(name) {
@@ -320,7 +319,7 @@ fun CartItem(
             }
         )
         IconButton(
-            onClick = { removeSnack(snack.id) },
+            onClick = { removeSnack(robot.id) },
             modifier = Modifier
                 .constrainAs(remove) {
                     top.linkTo(parent.top)
@@ -335,7 +334,7 @@ fun CartItem(
             )
         }
         Text(
-            text = snack.tagline,
+            text = robot.tagline,
             style = MaterialTheme.typography.bodyLarge,
             color = JetsnackTheme.colors.textHelp,
             modifier = Modifier.constrainAs(tag) {
@@ -356,7 +355,7 @@ fun CartItem(
                 }
         )
         Text(
-            text = formatPrice(snack.price),
+            text = formatPrice(robot.price),
             style = MaterialTheme.typography.titleMedium,
             color = JetsnackTheme.colors.textPrimary,
             modifier = Modifier.constrainAs(price) {
@@ -371,8 +370,8 @@ fun CartItem(
         )
         QuantitySelector(
             count = orderLine.count,
-            decreaseItemCount = { decreaseItemCount(snack.id) },
-            increaseItemCount = { increaseItemCount(snack.id) },
+            decreaseItemCount = { decreaseItemCount(robot.id) },
+            increaseItemCount = { increaseItemCount(robot.id) },
             modifier = Modifier.constrainAs(quantity) {
                 baseline.linkTo(price.baseline)
                 end.linkTo(parent.end)
@@ -493,12 +492,12 @@ private fun CheckoutBar(modifier: Modifier = Modifier) {
 private fun CartPreview() {
     JetsnackTheme {
         Cart(
-            orderLines = SnackRepo.getCart(),
-            removeSnack = {},
+            orderLines = RobotRepo.getCart(),
+            removeRobot = {},
             increaseItemCount = {},
             decreaseItemCount = {},
-            inspiredByCart = SnackRepo.getInspiredByCart(),
-            onSnackClick = { _, _ -> }
+            inspiredByCart = RobotRepo.getInspiredByCart(),
+            onClick = { _, _ -> }
         )
     }
 }

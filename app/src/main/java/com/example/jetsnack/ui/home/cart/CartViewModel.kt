@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.jetsnack.R
 import com.example.jetsnack.model.OrderLine
-import com.example.jetsnack.model.SnackRepo
+import com.example.jetsnack.model.RobotRepo
 import com.example.jetsnack.model.Manager
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,7 +16,7 @@ import kotlinx.coroutines.flow.StateFlow
  */
 class CartViewModel(
     private val snackbarManager: Manager,
-    snackRepository: SnackRepo
+    snackRepository: RobotRepo
 ) : ViewModel() {
 
     private val _orderLines: MutableStateFlow<List<OrderLine>> =
@@ -41,7 +41,7 @@ class CartViewModel(
             val currentCount = _orderLines.value.first { it.robot.id == snackId }.count
             if (currentCount == 1) {
                 // remove snack from cart
-                removeSnack(snackId)
+                removeRobot(snackId)
             } else {
                 // update quantity in cart
                 updateSnackCount(snackId, currentCount - 1)
@@ -51,7 +51,7 @@ class CartViewModel(
         }
     }
 
-    fun removeSnack(snackId: Long) {
+    fun removeRobot(snackId: Long) {
         _orderLines.value = _orderLines.value.filter { it.robot.id != snackId }
     }
 
@@ -71,7 +71,7 @@ class CartViewModel(
     companion object {
         fun provideFactory(
             snackbarManager: Manager = Manager,
-            snackRepository: SnackRepo = SnackRepo
+            snackRepository: RobotRepo = RobotRepo
         ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
             @Suppress("UNCHECKED_CAST")
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
