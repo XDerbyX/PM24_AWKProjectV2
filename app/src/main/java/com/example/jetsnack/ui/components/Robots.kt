@@ -66,8 +66,8 @@ import com.example.jetsnack.ui.LocalNavAnimatedVisibilityScope
 import com.example.jetsnack.ui.LocalSharedTransitionScope
 import com.example.jetsnack.ui.RobotSharedElementKey
 import com.example.jetsnack.ui.sharedElementType
-import com.example.jetsnack.ui.snackdetail.nonSpatialExpressiveSpring
-import com.example.jetsnack.ui.snackdetail.snackDetailBoundsTransform
+import com.example.jetsnack.ui.robotdetail.nonSpatialExpressiveSpring
+import com.example.jetsnack.ui.robotdetail.snackDetailBoundsTransform
 import com.example.jetsnack.ui.theme.JetsnackTheme
 
 private val HighlightCardWidth = 170.dp

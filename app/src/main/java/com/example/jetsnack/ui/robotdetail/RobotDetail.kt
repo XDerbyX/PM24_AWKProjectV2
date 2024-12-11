@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalSharedTransitionApi::class, ExperimentalAnimationApi::class)
 
-package com.example.jetsnack.ui.snackdetail
+package com.example.jetsnack.ui.robotdetail
 
 import android.content.res.Configuration
 import androidx.annotation.DrawableRes

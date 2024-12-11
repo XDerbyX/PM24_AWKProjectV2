@@ -38,9 +38,9 @@ import com.example.jetsnack.ui.home.addHomeGraph
 import com.example.jetsnack.ui.home.composableWithCompositionLocal
 import com.example.jetsnack.ui.navigation.MainDestinations
 import com.example.jetsnack.ui.navigation.rememberNavController
-import com.example.jetsnack.ui.snackdetail.SnackDetail
-import com.example.jetsnack.ui.snackdetail.nonSpatialExpressiveSpring
-import com.example.jetsnack.ui.snackdetail.spatialExpressiveSpring
+import com.example.jetsnack.ui.robotdetail.SnackDetail
+import com.example.jetsnack.ui.robotdetail.nonSpatialExpressiveSpring
+import com.example.jetsnack.ui.robotdetail.spatialExpressiveSpring
 import com.example.jetsnack.ui.theme.JetsnackTheme
 
 @Preview

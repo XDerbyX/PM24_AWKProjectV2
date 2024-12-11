@@ -66,8 +66,8 @@ import com.example.jetsnack.ui.components.QuantitySelector
 import com.example.jetsnack.ui.components.RobotCollection
 import com.example.jetsnack.ui.components.RobotImage
 import com.example.jetsnack.ui.home.DestinationBar
-import com.example.jetsnack.ui.snackdetail.nonSpatialExpressiveSpring
-import com.example.jetsnack.ui.snackdetail.spatialExpressiveSpring
+import com.example.jetsnack.ui.robotdetail.nonSpatialExpressiveSpring
+import com.example.jetsnack.ui.robotdetail.spatialExpressiveSpring
 import com.example.jetsnack.ui.theme.AlphaNearOpaque
 import com.example.jetsnack.ui.theme.JetsnackTheme
 import com.example.jetsnack.ui.utils.formatPrice
